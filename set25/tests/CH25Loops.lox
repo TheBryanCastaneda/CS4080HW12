@@ -1,0 +1,69 @@
+var first;
+var second;
+var third;
+
+for (var i = 0; i < 3; i = i + 1) {
+  fun read() {
+    return i;
+  }
+
+  if (i == 0) first = read;
+  else if (i == 1) second = read;
+  else third = read;
+}
+
+print first();
+print second();
+print third();
+
+var skipped;
+var finished;
+
+for (var i = 0; i < 2; i = i + 1) {
+  const saved = i + 10;
+
+  fun read() {
+    return i + saved;
+  }
+
+  if (i == 0) {
+    skipped = read;
+    continue;
+  }
+
+  finished = read;
+}
+
+print skipped();
+print finished();
+
+var withoutIncrement;
+
+for (var k = 0; k < 2;) {
+  fun read() {
+    return k;
+  }
+
+  if (k == 0) withoutIncrement = read;
+  k = k + 1;
+}
+
+print withoutIncrement();
+
+fun keepShared() {
+  var i = 0;
+  var saved;
+
+  for (; i < 2; i = i + 1) {
+    fun read() {
+      return i;
+    }
+
+    saved = read;
+  }
+
+  return saved;
+}
+
+var shared = keepShared();
+print shared();

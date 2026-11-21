@@ -1,0 +1,33 @@
+fun vector(x, y) {
+  fun getX() {
+    return x;
+  }
+
+  fun getY() {
+    return y;
+  }
+
+  fun add(other) {
+    return vector(x + other("x")(), y + other("y")());
+  }
+
+  fun method(name) {
+    if (name == "x") return getX;
+    if (name == "y") return getY;
+    if (name == "add") return add;
+    return nil;
+  }
+
+  return method;
+}
+
+var first = vector(3, 4);
+var second = vector(1, 2);
+var sum = first("add")(second);
+
+print first("x")();
+print first("y")();
+print second("x")();
+print second("y")();
+print sum("x")();
+print sum("y")();

@@ -1,0 +1,38 @@
+fun makeCounter(start) {
+  var value = start;
+
+  fun next() {
+    value = value + 1;
+    return value;
+  }
+
+  return next;
+}
+
+var first = makeCounter(0);
+var second = makeCounter(10);
+
+print first();
+print first();
+print second();
+
+fun outer() {
+  var number = 40;
+
+  fun middle() {
+    fun inner() {
+      number = number + 1;
+      return number;
+    }
+
+    return inner;
+  }
+
+  return middle;
+}
+
+var build = outer();
+var saved = build();
+
+print saved();
+print saved();
